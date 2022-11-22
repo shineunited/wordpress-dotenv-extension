@@ -1,0 +1,49 @@
+{
+	"name": "shineunited/wordpress-dotenv-extensions",
+	"type": "composer-plugin",
+	"license": "MIT",
+	"require": {
+		"php": ">=8.0",
+		"composer-plugin-api": "^2.0",
+		"shineunited/conductor": "*",
+		"shineunited/wordpress-installer": "*",
+		"vlucas/phpdotenv": "^5.0"
+	},
+	"require-dev": {
+		"shineunited/conductor-gitignore-addon": "*",
+		"squizlabs/php_codesniffer": "^3.0",
+		"phpcompatibility/php-compatibility": "^9.3",
+		"shineunited/coding-standard": "^1.0",
+		"phpstan/phpstan": "^1.9",
+		"composer/composer": "^2.4",
+		"phpunit/phpunit": "^9.5"
+	},
+	"autoload": {
+		"psr-4": {
+			"ShineUnited\\WordPress\\Dotenv\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"ShineUnited\\WordPress\\Dotenv\\Tests\\": "tests/"
+		}
+	},
+	"extra": {
+		"class": "ShineUnited\\WordPress\\Dotenv\\Plugin"
+	},
+	"config": {
+		"allow-plugins": {
+			"shineunited/conductor": false,
+			"shineunited/conductor-gitignore-addon": false,
+			"shineunited/conductor-twig-addon": false,
+			"shineunited/wordpress-installer": false,
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	},
+	"scripts": {
+		"phpcs": "phpcs -ps",
+		"phpcbf": "phpcbf -p",
+		"phpstan": "phpstan analyse",
+		"phpunit": "phpunit --do-not-cache-result"
+	}
+}
