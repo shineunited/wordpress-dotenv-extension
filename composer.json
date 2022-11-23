@@ -2,6 +2,11 @@
 	"name": "shineunited/wordpress-dotenv-extensions",
 	"type": "composer-plugin",
 	"license": "MIT",
+	"description": "Enables dotenv configuration of WordPress installations.",
+	"keywords": [
+		"wordpress",
+		"dotenv"
+	],
 	"require": {
 		"php": ">=8.0",
 		"composer-plugin-api": "^2.0",
