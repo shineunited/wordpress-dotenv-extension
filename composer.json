@@ -10,8 +10,7 @@
 	"require": {
 		"php": ">=8.0",
 		"composer-plugin-api": "^2.0",
-		"shineunited/conductor": "*",
-		"shineunited/wordpress-installer": "*",
+		"shineunited/wordpress-installer": "^1.0",
 		"vlucas/phpdotenv": "^5.0"
 	},
 	"require-dev": {
