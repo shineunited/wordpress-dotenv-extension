@@ -1,0 +1,36 @@
+{
+	"name": "shineunited/wordpress-kinsta-extensions-dev",
+	"type": "project",
+	"repositories": {
+		"wordpress-installer": {
+			"type": "path",
+			"url": "../"
+		},
+		"wpackagist": {
+			"type": "composer",
+			"url": "https://wpackagist.org",
+			"only": [
+				"wpackagist-plugin/*",
+				"wpackagist-theme/*"
+			]
+		}
+	},
+	"require": {
+		"shineunited/wordpress-dotenv-extensions": "@dev"
+	},
+	"require-dev": {
+		"roots/wordpress-no-content": "6.0",
+		"shineunited/conductor-gitignore-addon": "^1.0",
+		"wpackagist-plugin/akismet": "^5.0",
+		"wpackagist-theme/twentytwentytwo": "^1.0"
+	},
+	"config": {
+		"allow-plugins": {
+			"shineunited/*": true,
+			"composer/installers": false
+		}
+	},
+	"scripts": {
+		"clean": "find . \\! -path './composer.json' -delete"
+	}
+}

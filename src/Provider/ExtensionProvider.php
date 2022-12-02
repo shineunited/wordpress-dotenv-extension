@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace ShineUnited\WordPress\Dotenv\Provider;
 
+use ShineUnited\WordPress\Dotenv\Extension\DotenvSetupExtension;
 use ShineUnited\WordPress\Installer\Capability\ExtensionProvider as ExtensionProviderCapability;
-use ShineUnited\WordPress\Installer\Extension\BeforeInitExtension;
 
 /**
  * Extension Provider
@@ -26,7 +26,7 @@ class ExtensionProvider implements ExtensionProviderCapability {
 	 */
 	public function getExtensions(): array {
 		return [
-			new BeforeInitExtension('{$wordpress.config-dir}/dotenv-loader.php'),
+			new DotenvSetupExtension(),
 		];
 	}
 }
