@@ -27,7 +27,6 @@ class BlueprintProvider implements BlueprintProviderCapability {
 	 */
 	public function getBlueprints(): array {
 		return [
-			new TwigBlueprint('{$wordpress.config-dir}/dotenv-loader.php', '@wordpress-dotenv/loader.php'),
 			new TwigBlueprint('{$wordpress.dotenv-dir}/.env.example', '@wordpress-dotenv/example'),
 		];
 	}
