@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of WordPress Installer.
+ * This file is part of WordPress Dotenv Extensions.
  *
  * (c) Shine United LLC
  *
