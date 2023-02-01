@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of WordPress Installer.
+ * This file is part of WordPress Dotenv Extensions.
  *
  * (c) Shine United LLC
  *
@@ -36,25 +36,26 @@ class DotenvSetupExtension extends PriorityExtension {
 	public function generateCode(Configuration $config): string {
 		$code = [];
 
-		$rootPath = Path::makeRelative($config['wordpress.dotenv-dir'], $config['wordpress.config-dir']);
+		$dirPath = Path::makeRelative($config['wordpress.dotenv-dir'], $config['vendor-dir']);
+		$envPath = Path::makeRelative($config['wordpress.dotenv-dir'] . '/.env', $config['vendor-dir']);
 
-		$code[] = '$dotenvDir = __DIR__ . \'/' . addslashes($rootPath) . '\';';
+		$dirPathCode = '__DIR__ . \'/' . addslashes($dirPath) . '\'';
+		$envPathCode = '__DIR__ . \'/' . addslashes($envPath) . '\'';
 
+		$code[] = 'if (file_exists(' . $envPathCode . ')) {';
 		if (in_array($config['wordpress.config.source'], ['server', 'env'])) {
-			$code[] = '$dotenv = \\Dotenv\\Dotenv::createImmutable($dotenvDir);';
+			$code[] = "\t" . '$dotenv = \\Dotenv\\Dotenv::createImmutable(' . $dirPathCode . ');';
 		} else {
-			$code[] = '$dotenv = \\Dotenv\\Dotenv::createUnsafeImmutable($dotenvDir);';
+			$code[] = "\t" . '$dotenv = \\Dotenv\\Dotenv::createUnsafeImmutable(' . $dirPathCode . ');';
 		}
-
-		$code[] = 'if(file_exists($dotenvDir . \'/.env\')) {';
-		$code[] = '	$dotenv->load();';
-		$code[] = '	if(env(\'DATABASE_URL\')) {';
-		$code[] = '		$dotenv->required([';
-		$code[] = '			\'DB_NAME\',';
-		$code[] = '			\'DB_USER\',';
-		$code[] = '			\'DB_PASSWORD\'';
-		$code[] = '		]);';
-		$code[] = '	}';
+		$code[] = "\t" . '$dotenv->load();';
+		$code[] = "\t" . 'if (env(\'DATABASE_URL\')) {';
+		$code[] = "\t\t" . '$dotenv->required([';
+		$code[] = "\t\t\t" . '\'DB_NAME\',';
+		$code[] = "\t\t\t" . '\'DB_USER\',';
+		$code[] = "\t\t\t" . '\'DB_PASSWORD\'';
+		$code[] = "\t\t" . ']);';
+		$code[] = "\t" . '}';
 		$code[] = '}';
 
 		return implode(PHP_EOL, $code);
