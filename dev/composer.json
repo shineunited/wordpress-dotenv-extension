@@ -31,6 +31,6 @@
 		}
 	},
 	"scripts": {
-		"clean": "find . \\! -path './composer.json' -delete"
+		"clean": "find . \\! -path './composer.json' \\! -path './.env' -delete"
 	}
 }
