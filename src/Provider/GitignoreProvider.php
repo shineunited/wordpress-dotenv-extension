@@ -27,7 +27,6 @@ class GitignoreProvider implements GitignoreProviderCapability {
 	public function getGitignores(): array {
 		return [
 			new Rule('{$wordpress.dotenv-dir}/.env'),
-			new Rule('{$wordpress.config-dir}/dotenv-loader.php'),
 		];
 	}
 }
